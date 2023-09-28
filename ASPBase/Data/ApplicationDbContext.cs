@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ASPBase.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASPBase.Data
 {
@@ -7,5 +8,6 @@ namespace ASPBase.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options) { 
         
         }
+        public DbSet<Category> Categories { get; set; }
     }
 }

@@ -13,3 +13,5 @@
 ## establish connection with Db
 
 Tools > nuget manager > console > update-database
+
+## add-migration
