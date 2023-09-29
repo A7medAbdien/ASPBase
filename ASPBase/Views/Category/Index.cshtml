@@ -1,6 +1,18 @@
 ﻿@model List<Category>
 
-<h1>Category List</h1>
+<div class="container">
+    <div class="row py-4">
+        <div class="col-6">
+            <h1>Category List</h1>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary text-capitalize">
+                <i class="bi bi-plus-circle"></i> create new category
+            </a>
+        </div>
+    </div>
+</div>
+
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
