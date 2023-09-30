@@ -53,6 +53,7 @@ namespace ASPRazorBase.Pages.Categories
             try
             {
                 await _context.SaveChangesAsync();
+                TempData["success"] = "Category Edited Successfully";
             }
             catch (DbUpdateConcurrencyException)
             {

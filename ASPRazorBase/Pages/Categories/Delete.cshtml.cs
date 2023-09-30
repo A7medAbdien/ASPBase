@@ -55,6 +55,8 @@ namespace ASPRazorBase.Pages.Categories
                 Category = category;
                 _context.Categories.Remove(Category);
                 await _context.SaveChangesAsync();
+                TempData["success"] = "Category Deleted Successfully";
+
             }
 
             return RedirectToPage("./Index");
