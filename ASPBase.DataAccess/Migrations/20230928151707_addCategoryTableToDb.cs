@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace ASPBase.Migrations
+namespace ASPBase.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class addCategoryTableToDb : Migration

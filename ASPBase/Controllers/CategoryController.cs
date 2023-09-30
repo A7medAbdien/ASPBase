@@ -1,4 +1,4 @@
-﻿using ASPBase.Data;
+﻿using ASPBase.DataAccess.Data;
 using ASPBase.Models;
 using Microsoft.AspNetCore.Mvc;
 
