@@ -1,22 +1,29 @@
-using ASPRazorBase.Data;
-using ASPRazorBase.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using ASPRazorBase.Data;
+using ASPRazorBase.Models;
 
 namespace ASPRazorBase.Pages.Categories
 {
     public class IndexModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
-        public IndexModel(ApplicationDbContext db)
-        {
-            _db = db;
-        }
-        public List<Category> CategoryList { get; set; }
+        private readonly ASPRazorBase.Data.ApplicationDbContext _context;
 
-        public void OnGet()
+        public IndexModel(ASPRazorBase.Data.ApplicationDbContext context)
         {
-            CategoryList = _db.Categories.ToList();
+            _context = context;
+        }
+
+        public IList<Category> Category { get;set; } = default!;
+
+        public async Task OnGetAsync()
+        {
+            Category = await _context.Categories.ToListAsync();
         }
     }
 }

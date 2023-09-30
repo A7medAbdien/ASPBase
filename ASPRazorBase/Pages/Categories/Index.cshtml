@@ -1,15 +1,17 @@
 ﻿@page
 @model ASPRazorBase.Pages.Categories.IndexModel
 
+@{
+    ViewData["Title"] = "Index";
+}
+
 <div class="container">
     <div class="row py-4">
         <div class="col-6">
             <h1>Category List</h1>
         </div>
         <div class="col-6 text-end">
-            <a asp-page="/categories/create" class="btn btn-primary text-capitalize">
-                <i class="bi bi-plus-circle"></i> create new category
-            </a>
+            <a asp-page="Create" class="btn btn-primary text-capitalize">Create New</a>
         </div>
     </div>
 </div>
@@ -18,37 +20,34 @@
     <thead>
         <tr>
             <th>
-                Category Name
+                @Html.DisplayNameFor(model => model.Category[0].Name)
             </th>
             <th>
-                Display Order
+                @Html.DisplayNameFor(model => model.Category[0].DisplayOrder)
             </th>
             <th></th>
         </tr>
     </thead>
 
     <tbody>
-        @foreach (var obj in Model.CategoryList.OrderBy(u => u.DisplayOrder))
+        @foreach (var item in Model.Category)
         {
             <tr>
                 <td>
-                    @obj.Name
+                    @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @obj.DisplayOrder
+                    @Html.DisplayFor(modelItem => item.DisplayOrder)
                 </td>
                 <td>
-                    <div class="w-75 btn-group" role="group">
-                        <a asp-action="/categories/edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
-                            <i class="bi bi-pencil-square"></i> Edit
-                        </a>
-                        <a asp-action="/categories/delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
-                            <i class="bi bi-trash-fill"></i> Delete
-                        </a>
+
+                    <div class="w-100 btn-group" role="group">
+                        <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-primary mx-2">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-secondary mx-2">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger mx-2">Delete</a>
                     </div>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
