@@ -26,9 +26,6 @@ namespace ASPBase.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Create(Product obj)
         {
-            /*if (obj.Name == obj.DisplayOrder.ToString()) {
-                ModelState.AddModelError("name", "The Display Order cannot match the Name.");
-            }*/
             if (ModelState.IsValid)
             {
                 _unitOfWork.Product.Add(obj);
@@ -43,13 +40,13 @@ namespace ASPBase.Areas.Admin.Controllers
         {
             if (id == null || id == 0) { return NotFound(); }
 
-            Product? cateforyFromDb = _unitOfWork.Product.Get(u => u.Id == id);
-            //Product? cateforyFromDb2 = _db.Categories.FirstOrDefault(u=>u.Id==id);
-            //Product? cateforyFromDb3 = _db.Categories.Where(u => u.Id == id).FirstOrDefault();
+            Product? productFromDb = _unitOfWork.Product.Get(u => u.Id == id);
+            //Product? productFromDb2 = _db.Categories.FirstOrDefault(u=>u.Id==id);
+            //Product? productFromDb3 = _db.Categories.Where(u => u.Id == id).FirstOrDefault();
 
-            if (cateforyFromDb == null) { return NotFound(); }
+            if (productFromDb == null) { return NotFound(); }
 
-            return View(cateforyFromDb);
+            return View(productFromDb);
         }
 
         [HttpPost]
@@ -67,10 +64,10 @@ namespace ASPBase.Areas.Admin.Controllers
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0) { return NotFound(); }
-            Product? cateforyFromDb = _unitOfWork.Product.Get(u => u.Id == id);
-            if (cateforyFromDb == null) { return NotFound(); }
+            Product? productFromDb = _unitOfWork.Product.Get(u => u.Id == id);
+            if (productFromDb == null) { return NotFound(); }
 
-            return View(cateforyFromDb);
+            return View(productFromDb);
         }
 
         [HttpPost, ActionName("Delete")]
