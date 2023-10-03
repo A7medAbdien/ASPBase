@@ -1,4 +1,5 @@
 ﻿using ASPBase.DataAccess.Data;
+using ASPBase.DataAccess.Repository.IReopsitory;
 using ASPBase.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,14 +7,14 @@ namespace ASPBase.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
+        private readonly ICategoryRepository _categoryReop;
+        public CategoryController(ICategoryRepository categoryReop)
         {
-            _db = db;
+            _categoryReop = categoryReop;
         }
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _db.Categories.ToList();
+            List<Category> objCategoryList = _categoryReop.GetAll().ToList();
             return View(objCategoryList);
         }
 
@@ -29,8 +30,8 @@ namespace ASPBase.Controllers
             }*/
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                _categoryReop.Add(obj);
+                _categoryReop.Save();
                 TempData["success"] = "Category Created Successfully";
                 return RedirectToAction("Index");
             }
@@ -41,7 +42,7 @@ namespace ASPBase.Controllers
         {
             if (id == null || id == 0) { return NotFound(); }
 
-            Category? cateforyFromDb = _db.Categories.Find(id);
+            Category? cateforyFromDb = _categoryReop.Get(u => u.Id == id);
             //Category? cateforyFromDb2 = _db.Categories.FirstOrDefault(u=>u.Id==id);
             //Category? cateforyFromDb3 = _db.Categories.Where(u => u.Id == id).FirstOrDefault();
 
@@ -55,8 +56,8 @@ namespace ASPBase.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _categoryReop.Update(obj);
+                _categoryReop.Save();
                 TempData["success"] = "Category Edited Successfully";
                 return RedirectToAction("Index");
             }
@@ -65,7 +66,7 @@ namespace ASPBase.Controllers
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0) { return NotFound(); }
-            Category? cateforyFromDb = _db.Categories.Find(id);
+            Category? cateforyFromDb = _categoryReop.Get(u => u.Id == id);
             if (cateforyFromDb == null) { return NotFound(); }
 
             return View(cateforyFromDb);
@@ -76,11 +77,11 @@ namespace ASPBase.Controllers
         {
 
             if (id == null || id == 0) { return NotFound(); }
-            Category? obj = _db.Categories.Find(id);
+            Category? obj = _categoryReop.Get(u => u.Id == id);
             if (obj == null) { return NotFound(); }
 
-            _db.Categories.Remove(obj);
-            _db.SaveChanges();
+            _categoryReop.Remove(obj);
+            _categoryReop.Save();
             TempData["success"] = "Category Deleted Successfully";
             return RedirectToAction("Index");
         }
