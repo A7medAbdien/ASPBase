@@ -21,7 +21,7 @@ namespace ASPBase.DataAccess.Data
                 );
 
 
-            modelBuilder.Entity<Category>().HasData(
+            modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
                     Id = 1,
