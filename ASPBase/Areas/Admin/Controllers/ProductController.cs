@@ -2,6 +2,7 @@
 using ASPBase.DataAccess.Repository.IReopsitory;
 using ASPBase.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ASPBase.Areas.Admin.Controllers
 {
@@ -21,6 +22,17 @@ namespace ASPBase.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category
+            .GetAll().Select(
+                u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString(),
+                }
+             );
+            //ViewBag.CategoryList = CategoryList;
+            ViewData["CategoryList"] = CategoryList;
+
             return View();
         }
         [HttpPost]
