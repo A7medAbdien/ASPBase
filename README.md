@@ -9,6 +9,8 @@ that covers:
 4. Deployment
 5. Payment
 
+This project was following this [tutorial](https://youtu.be/AopeJjkcRvU?si=EjXjMVooGZTAMNnS)
+
 # My notes
 
 ## show .net8
