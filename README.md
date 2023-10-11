@@ -1,5 +1,16 @@
 # ASPBase
 
+This project is intended to be a full stack template for small businesses use cases,
+that covers:
+
+1. User Auth
+2. CURD operations
+3. Dockerizing
+4. Deployment
+5. Payment
+
+# My notes
+
 ## show .net8
 [here](https://anthonygiretti.com/2023/06/10/net-8-why-net-8-preview-doesnt-show-up-in-visual-studio-2022/)
 
